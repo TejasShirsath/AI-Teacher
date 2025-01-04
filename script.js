@@ -1,4 +1,4 @@
-const API_KEY = '';
+const API_KEY = process.env.API_KEY;
         const API_VERSION = 'v1beta';
         const MODEL_NAME = 'gemini-1.5-flash';
         const API_ENDPOINT = `https://generativelanguage.googleapis.com/${API_VERSION}/models/${MODEL_NAME}:generateContent`;

@@ -1,6 +1,7 @@
-// server.js
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');  // Import the CORS package
+const fetch = require('node-fetch');  // Make sure to install node-fetch if you're using it in Node.js
 const app = express();
 
 // Constants
@@ -9,6 +10,7 @@ const MODEL_NAME = 'gemini-1.5-flash';
 const API_ENDPOINT = `https://generativelanguage.googleapis.com/${API_VERSION}/models/${MODEL_NAME}:generateContent`;
 
 // Middleware
+app.use(cors());  // Enable CORS for all origins
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static('public'));
 

@@ -1,7 +1,6 @@
-// server.js
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');  // Import the cors package
+const cors = require('cors');
 const app = express();
 
 // Constants
@@ -13,6 +12,9 @@ const API_ENDPOINT = `https://generativelanguage.googleapis.com/${API_VERSION}/m
 app.use(cors());  // Enable CORS for all origins
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static('public'));
+
+// Handle OPTIONS requests for preflight
+app.options('*', cors());  // Preflight handling for all routes
 
 // Route to handle image processing
 app.post('/api/process-image', async (req, res) => {

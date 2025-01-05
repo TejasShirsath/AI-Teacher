@@ -4,6 +4,7 @@
   "description": "This is a web application that helps users solve math problems by capturing an image of the problem and sending it to the Google Gemini API for processing. The solution is then displayed to the user.",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

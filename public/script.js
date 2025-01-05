@@ -126,9 +126,37 @@ function hideError() {
 }
 
 function displayResult(imageData, solutionText) {
+    // Display the captured image
     document.getElementById('capturedImage').src = imageData;
-    document.getElementById('solution').textContent = solutionText;
+
+    // Replace math expressions with a span for KaTeX rendering
+    const mathRegex = /\$(.*?)\$/g;
+    const processedText = solutionText.replace(mathRegex, (match, p1) => {
+        // Wrap the math expression in a span with the class 'math'
+        return `<span class="math">${p1}</span>`;
+    });
+
+    // Parse markdown text to HTML
+    const solutionContainer = document.getElementById('solution');
+    solutionContainer.innerHTML = marked.parse(processedText);
+
+    // Render LaTeX math expressions using KaTeX
+    const mathElements = solutionContainer.querySelectorAll('.math');
+    mathElements.forEach((el) => {
+        const latex = el.textContent || el.innerText;
+        el.innerHTML = ''; // Clear the existing text
+        try {
+            katex.render(latex, el, {
+                throwOnError: false,
+                displayMode: true,
+            });
+        } catch (e) {
+            console.error('KaTeX rendering error:', e);
+        }
+    });
 }
+
+
 
 // Event Listeners
 document.getElementById('grantPermissions').addEventListener('click', requestPermissions);

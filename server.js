@@ -1,7 +1,7 @@
+// server.js
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');  // Import the CORS package
-const fetch = require('node-fetch');  // Make sure to install node-fetch if you're using it in Node.js
+const cors = require('cors');  // Import the cors package
 const app = express();
 
 // Constants
